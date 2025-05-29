@@ -1,0 +1,70 @@
+<style>
+  /* Custom Modal Styling */
+  .modal-content {
+      background-color: #212121;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .modal-header {
+      border-bottom: 1px solid #444;
+  }
+
+  .modal-footer {
+      border-top: 1px solid #444;
+  }
+
+  .btn-close {
+      filter: invert(1); /* Makes close button visible on dark theme */
+  }
+</style>
+
+<!-- More Info Modal -->
+<div class="modal fade" id="Modal-MoreInfo-{{ item.id }}" tabindex="-1" aria-labelledby="MoreInfoLabel-{{ item.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="MoreInfoLabel-{{ item.id }}">
+          {{ item.name }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ item.description }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Purchase Confirmation Modal -->
+<div class="modal fade" id="Modal-Purchase-{{ item.id }}" tabindex="-1" aria-labelledby="PurchaseLabel-{{ item.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="PurchaseLabel-{{ item.id }}">
+          Confirm Purchase
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h4 class="mb-3">Are you sure you want to buy <strong>{{ item.name }}</strong> for <span class="text-warning">${{ item.price }}</span>?</h4>
+        <p>By clicking "Purchase", this item will be added to your inventory.</p>
+        <form method="POST">
+            {{ purchase_form.hidden_tag() }}
+            <br>
+            <input id="purchased_item" name="purchased_item" type="hidden" value="{{ item.name }}">
+            {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light w-100" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

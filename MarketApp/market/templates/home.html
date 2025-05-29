@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Nikola Tesla Market{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container text-center mt-5">
+        <h1 class="fw-bold">Welcome to Nikola Tesla Market</h1>
+        <p class="lead text-muted">Your one-stop shop for innovative products</p>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="position-relative overflow-hidden p-4 p-md-5 text-center bg-dark text-white">
+        <div class="col-md-6 mx-auto">
+            <h1 class="display-4 fw-bold">Nikola Tesla Market</h1>
+            <p class="lead">Discover and purchase cutting-edge products with ease.</p>
+            <a class="btn btn-lg btn-primary mt-3" href="{{ url_for('market_page') }}">Start Shopping</a>
+        </div>
+    </div>
+
+{% endblock %}

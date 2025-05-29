@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Nikola Tesla Market{% endblock %}
+
+{% block content %}
+
+ <!-- Main Content -->
+<div class="container text-center">
+    <h1 class="mt-4 fw-bold">Market Page</h1>
+</div>
+
+<!-- Market Table Section -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Available Items Table -->
+        <div class="col-lg-8">
+            <h2 class="mb-3">Available Items on the Market</h2>
+            <p class="text-muted">Click on an item to start buying.</p>
+            <br>
+            <table class="table table-hover table-dark table-striped table-bordered">
+                <thead class="table-primary text-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Barcode</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    {% include 'includes/items_modals.html' %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.barcode }}</td>
+                        <td>{{ item.price }}$</td>
+                        <td>
+                            <button class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="#Modal-MoreInfo-{{ item.id }}">More Info</button>
+                            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#Modal-Purchase-{{ item.id }}">Buy</button>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sidebar for Owned Items -->
+        <div class="col-lg-4">
+            <h2 class="mb-3">Owned Items</h2>
+            <p class="text-muted">Click "Sell Item" to return an item to the market.</p>
+        
+            <div class="row g-3">
+                {% for owned_item in owned_items %}
+                {% include 'includes/owned_modals.html' %}
+                    <div class="col-md-6">
+                        <div class="card text-center bg-dark text-white shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ owned_item.name }}</h5>
+                                <p class="card-text">{{ owned_item.description }}</p>
+                                <p class="card-text">Price: {{ owned_item.price }}$</p>
+                                <button type="button" class="btn btn-outline-danger w-100" 
+                                        data-bs-toggle="modal" data-bs-target="#Modal-Selling-{{ owned_item.id }}">
+                                    Sell Item
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+ 

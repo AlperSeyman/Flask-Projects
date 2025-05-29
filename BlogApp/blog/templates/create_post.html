@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="card shadow-sm p-4">
+        <form method="POST" action="">
+            {{ post_form.hidden_tag() }}
+
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <!-- Title Field -->
+                <div class="mb-3">
+                    {{ post_form.title.label(class="form-label") }}
+                    {{ post_form.title(class="form-control" + (" is-invalid" if post_form.title.errors else ""), placeholder="Enter your post title") }}
+
+                    {% if post_form.title.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in post_form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Content Field -->
+                <div class="mb-3">
+                    {{ post_form.content.label(class="form-label") }}
+                    {{ post_form.content(class="form-control" + (" is-invalid" if post_form.content.errors else ""), placeholder="Enter your content") }}
+
+                    {% if post_form.content.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in post_form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    {{ post_form.submit(class="btn btn-primary btn-lg") }}
+                </div>
+
+                
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+

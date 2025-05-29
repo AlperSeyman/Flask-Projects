@@ -1,0 +1,11 @@
+1- Create Templates
+2- Create Forms and User Input
+3- Create Database with Flask-SQLAlchemy
+4- Modifying Package Structure
+5- User Authentication
+6- User Account and Profile Picture
+7- Create, Update, and Delete Posts
+8- Pagination
+9- Email and Password Reset
+10- Blueprints
+11- Create Custom Error Pages
